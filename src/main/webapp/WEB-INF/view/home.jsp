@@ -6,13 +6,10 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<!--Import materialize.css-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <link type="text/css" rel="stylesheet"
 	href="${url_base}css/materialize.min.css" media="screen,projection" />
-<!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CSV</title>
 </head>

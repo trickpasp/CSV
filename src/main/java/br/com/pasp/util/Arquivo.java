@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.springframework.stereotype.Component;
 
@@ -15,16 +16,22 @@ import br.com.pasp.model.RegAgenda;
 
 @Component
 public class Arquivo {
-
-	private static String url = System.getProperty("user.home") + "/arquivo.csv";	
 	
-	public Arquivo() {}	
+	private Properties prop;
+	private static String url;	
+	
+	
+	public Arquivo() {
+		prop = new Properties();
+		
+	}	
 	
 
 	public void gravarCSV(RegAgenda agenda){
 
 		try {	
-			BufferedWriter saida = new BufferedWriter(new FileWriter(getUrl(), true));			
+			prop.load(new FileInputStream("config.properties"));
+			BufferedWriter saida = new BufferedWriter(new FileWriter(prop.getProperty("way"),true));			
 			saida.write(agenda.getNome() + "\t");
 			saida.write(agenda.getEnd() + "\t");
 			saida.write(agenda.getTel() + "\t");
@@ -39,7 +46,9 @@ public class Arquivo {
 
 	public List<RegAgenda> lerCSV() {
 		try {			
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(getUrl())));
+			prop.load(new FileInputStream("config.properties"));
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(prop.getProperty("way"))));
 			String linha = br.readLine();
 			List<RegAgenda> lista = new ArrayList<RegAgenda>();
 			while(linha != null) {
